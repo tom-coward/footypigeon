@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'username', 'email', 'name', 'password',
     ];
 
     /**
@@ -26,6 +26,17 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'weekly_points' => '0',
+        'monthly_points' => '0',
+        'season_points' => '0',
     ];
 
     /**
