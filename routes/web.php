@@ -11,10 +11,12 @@
 |
 */
 
-// Redirect all index users to Login/Dashboard
+/*
+ * Welcome Page
+ */
 Route::get('/', function () {
-    return redirect(route('dashboard'));
-});
+    return view('welcome');
+})->middleware('guest');
 
 /*
  * Authentication System & Account Settings
