@@ -14,10 +14,10 @@
                     <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">{{ __('Dashboard') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('my-leagues/*') ? 'active' : '' }}" href="{{ route('my-leagues.index') }}">{{ __('My Leagues') }}</a>
+                    <a class="nav-link {{ Request::is('leagues/*') ? 'active' : '' }}" href="{{ route('my-leagues.index') }}">{{ __('My Leagues') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('my-predictions/*') ? 'active' : '' }}" href="{{ route('my-predictions.index') }}">{{ __('My Predictions') }}</a>
+                    <a class="nav-link {{ Request::is('predictions/*') ? 'active' : '' }}" href="{{ route('my-predictions.index') }}">{{ __('My Predictions') }}</a>
                 </li>
             </ul>
 
