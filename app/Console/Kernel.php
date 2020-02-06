@@ -24,8 +24,16 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // Weekly Points Reset (runs every Friday at 12pm)
+        $schedule->command('ResetUserWeeklyPoints')->weeklyOn(5, '12:00');
+
+        // Monthly Points Reset (runs at midnight on 1st of every month)
+        $schedule->command('ResetUserMonthlyPoints')->monthlyOn(1, '00:00');
+
+        // Season Points Reset (runs at midnight on 1st of June annually)
+        $schedule->command('ResetUserSeasonPoints')->monthly()->when(function () {
+            return date('M') == 6;
+        });
     }
 
     /**
