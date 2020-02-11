@@ -23,6 +23,8 @@ Route::get('/', function () {
  */
 Auth::routes();
 Route::get('/account-settings', 'AccountSettingsController@index')->name('account-settings')->middleware('auth');
+Route::post('/account-settings', 'AccountSettingsController@update')->name('account-settings.update')->middleware('auth');
+Route::post('/account-settings/password-reset', 'AccountSettingsController@resetPassword')->name('account-settings.password-reset')->middleware('auth');
 
 // Routes protected by login
 Route::middleware('auth')->group(function() {
