@@ -64,6 +64,6 @@ class AccountSettingsController extends Controller
     {
         Auth::logout();
 
-        return redirect(route('password.reset'));
+        return redirect(route('password.request'));
     }
 }
