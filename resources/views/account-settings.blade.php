@@ -62,8 +62,6 @@
                             document.getElementById('password-reset-form').submit();">
                             {{ __('Reset Password') }}
                         </a>
-
-
                     </div>
 
                     <div class="text-right">
@@ -73,4 +71,9 @@
             </div>
         </div>
     </div>
+
+    <!-- Password Reset Form -->
+    <form id="password-reset-form" action="{{ route('account-settings.password-reset') }}" method="POST">
+        @csrf
+    </form>
 @endsection
