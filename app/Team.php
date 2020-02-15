@@ -35,6 +35,6 @@ class Team extends Model
      */
     public function manager()
     {
-        return $this->hasMany('App\User', 'manager_id');
+        return $this->belongsTo('App\User', 'manager_id');
     }
 }
