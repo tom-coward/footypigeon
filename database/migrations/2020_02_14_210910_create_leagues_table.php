@@ -17,7 +17,7 @@ class CreateLeaguesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->unsignedBigInteger('league_admin_id');
-            $table->foreign('league-admin_id')->references('id')->on('users');
+            $table->foreign('league_admin_id')->references('id')->on('users');
         });
     }
 
