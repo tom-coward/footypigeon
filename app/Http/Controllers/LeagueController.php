@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\League;
 use App\Team;
 use App\User;
@@ -103,17 +104,23 @@ class LeagueController extends Controller
     {
         // Validate form inputs
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
+            'username' => 'required|string|max:255|exists:users,username',
         ]);
 
-        // TODO: Check user doesn't already have team
-
         if ($validator->fails()) {
-            return back()->with('error', 'The invitee name you entered was invalid.');
+            return back()->with('error', 'The invitee username you entered was invalid.');
         }
 
         // Get user details
-        $user = User::where('name', $request->name);
+        $user = User::where('username', $request->username)->first();
+
+        // Check if user already has team
+        if(Team::where([
+                ['manager_id', '=', $user->id],
+                ['league_id', '=', $id],
+            ])->exists()) {
+            return back()->with('error', 'That user is already a member of the league.');
+        }
 
         // Create new team record
         $team = new Team;
@@ -121,7 +128,7 @@ class LeagueController extends Controller
         $team->league_id = $id;
         $team->save();
 
-        return back()->with('status', 'User was successfully invited to league.');
+        return back()->with('status', 'User was successfully added to the league.');
     }
 
     /**
