@@ -56,9 +56,28 @@
             <div class="card">
                 <div class="card-header">My League Positions</div>
                 <div class="card-body">
-                    <div class="row">
-                        <!-- TODO: foreach of user's leagues, show league position -->
-                    </div>
+                    @if(count(Auth::user()->teams) >= 1)
+                        <div class="row">
+                            @foreach(Auth::user()->teams->take(3) as $team)
+                                <div class="col">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                @isset($team->position)
+                                                    {{ $team->position }}
+                                                @else
+                                                    Not yet set
+                                                @endisset
+                                            </h5>
+                                            <p class="card-text">{{ $team->league->name }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p>You aren't currently a member of any leagues.</p>
+                    @endif
                 </div>
             </div>
         </div>
