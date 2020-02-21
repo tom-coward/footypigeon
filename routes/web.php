@@ -29,8 +29,8 @@ Route::post('/account-settings/password-reset', 'AccountSettingsController@reset
 // Routes protected by login
 Route::middleware('auth')->group(function() {
     /*
- * Dashboard
- */
+    * Dashboard
+    */
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
     /*
@@ -38,7 +38,14 @@ Route::middleware('auth')->group(function() {
      */
     Route::prefix('leagues')->name('my-leagues.')->group(function () {
         Route::get('/', 'LeagueController@index')->name('index');
+        Route::post('/create', 'LeagueController@store')->name('store');
+        Route::get('/view/{id}', 'LeagueController@show')->name('show');
+        Route::put('/update/{id}', 'LeagueController@update')->name('update')->middleware('leagueAdmin');
+        Route::post('/invite/{id}', 'LeagueController@invite')->name('invite')->middleware('leagueAdmin');
+        Route::post('/leave/{id}', 'LeagueController@leave')->name('leave');
+        Route::delete('/delete/{id}', 'LeagueController@destroy')->name('destroy')->middleware('leagueAdmin');
     });
+
     /*
      * My Predictions
      */

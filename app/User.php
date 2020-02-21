@@ -47,4 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the user's teams.
+     */
+    public function teams()
+    {
+        return $this->hasMany('App\Team', 'manager_id');
+    }
 }
