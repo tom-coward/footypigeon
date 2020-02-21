@@ -28,4 +28,17 @@ class League extends Model
     {
         return $this->hasMany('App\Team');
     }
+
+    /**
+     * On deletion of a league, firstly delete all related teams
+     */
+    public static function boot() {
+        parent::boot();
+
+        self::deleting(function($league) {
+            $league->teams()->each(function($team) {
+                $team->delete();
+             });
+        });
+    }
 }
