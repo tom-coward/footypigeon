@@ -106,12 +106,7 @@ class LeagueController extends Controller
             'name' => 'required|string|max:255',
         ]);
 
-        // Check user doesn't already have team
-        $validator->after(function ($validator) {
-            if () {
-                $validator->errors()->add('field', 'Something is wrong with this field!');
-            }
-        });
+        // TODO: Check user doesn't already have team
 
         if ($validator->fails()) {
             return back()->with('error', 'The invitee name you entered was invalid.');
