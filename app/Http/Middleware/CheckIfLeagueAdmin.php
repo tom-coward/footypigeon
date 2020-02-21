@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-use League;
+use App\League;
 
 class CheckIfLeagueAdmin
 {
