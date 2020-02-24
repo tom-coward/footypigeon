@@ -63,7 +63,9 @@ class LeagueController extends Controller
      */
     public function show($id)
     {
-        //
+        $league = League::findOrFail($id);
+
+        return view('my-leagues.view', ['league' => $league]);
     }
 
     /**
@@ -129,6 +131,57 @@ class LeagueController extends Controller
         $team->save();
 
         return back()->with('status', 'User was successfully added to the league.');
+    }
+
+    /**
+     * Remove a user from the league (by a league admin).
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @param  int  $teamId
+     * @return \Illuminate\Http\Response
+     */
+    public function remove(Request $request, $id, $teamId)
+    {
+        // Fetch team
+        $team = Team::findOrFail($teamId);
+
+        // Confirm team isn't owned by league admin
+        if($team->manager->id == $team->league->leagueAdmin->id){
+            return back()->with('error', 'The league administrator cannot be removed from the league.');
+        }
+
+        // Delete team record
+        $team->delete();
+
+        return back()->with('status', 'User removed from the league successfully.');
+    }
+
+    /**
+     * Remove a user from the league.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function leave(Request $request, $id)
+    {
+        $userId = $request->user()->id;
+        $leagueAdminId = League::findOrFail($id)->league_admin_id;
+
+        // Ensure user isn't league admin
+        if($userId == $leagueAdminId){
+            return back()->with('error', 'You cannot leave a league you are the administrator of.');
+        };
+
+        // Remove user's team record
+        $team = Team::where([
+            'manager_id' => $userId,
+            'league_id' => $id,
+        ]);
+        $team->delete();
+
+        return redirect(route('my-leagues.index'))->with('status', 'You left the league successfully.');
     }
 
     /**
