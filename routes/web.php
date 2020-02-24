@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function() {
         Route::get('/view/{id}', 'LeagueController@show')->name('show');
         Route::put('/update/{id}', 'LeagueController@update')->name('update')->middleware('leagueAdmin');
         Route::post('/invite/{id}', 'LeagueController@invite')->name('invite')->middleware('leagueAdmin');
+        Route::post('/remove/{id}/{teamId}', 'LeagueController@remove')->name('remove')->middleware('leagueAdmin');
         Route::post('/leave/{id}', 'LeagueController@leave')->name('leave');
         Route::delete('/delete/{id}', 'LeagueController@destroy')->name('destroy')->middleware('leagueAdmin');
     });

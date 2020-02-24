@@ -88,8 +88,6 @@
         </div>
     </div>
 
-    <!-- Manage League Modal -->
-
     <!-- Manage League/Membership Modal -->
     @foreach(Auth::user()->teams as $team)
         <div class="modal fade" id="manageLeagueModal{{ $team->id }}" tabindex="-1" role="dialog" aria-labelledby="manageLeagueModal{{ $team->id }}Label" aria-hidden="true">
