@@ -15,7 +15,7 @@ class CreatePredictionsTable extends Migration
     {
         Schema::create('predictions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('round_id');
             $table->boolean('result_recorded')->default(false);
