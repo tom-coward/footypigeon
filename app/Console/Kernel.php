@@ -34,6 +34,9 @@ class Kernel extends ConsoleKernel
         $schedule->command('ResetUserSeasonPoints')->monthly()->when(function () {
             return date('M') == 6;
         });
+
+        // Predictions Reset (runs at 6am daily)
+        $schedule->command('ResetPredictions')->dailyAt('06:00');
     }
 
     /**
