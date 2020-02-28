@@ -52,5 +52,6 @@ Route::middleware('auth')->group(function() {
      */
     Route::prefix('predictions')->name('my-predictions.')->group(function () {
         Route::get('/', 'PredictionController@index')->name('index');
+        Route::put('/', 'PredictionController@update')->name('update');
     });
 });

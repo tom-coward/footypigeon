@@ -55,4 +55,12 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Team', 'manager_id');
     }
+
+    /**
+     * Get the user's predictions.
+     */
+    public function predictions()
+    {
+        return $this->hasMany('App\Prediction');
+    }
 }
