@@ -45,7 +45,7 @@ class ResetPredictions extends Command
             $client = new \GuzzleHttp\Client();
 
             // Get current round ID
-            $roundRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/rounds/2/current', [
+            $roundRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/rounds/524/current', [
                 'headers' => [
                     'X-RapidAPI-Host' => config('api.host'),
                     'X-RapidAPI-Key' => config('api.key'),
