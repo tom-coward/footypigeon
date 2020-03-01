@@ -62,8 +62,8 @@ class GetResults extends Command
                 $result->home_team_name = $prediction->home_team_name;
                 $result->away_team_id = $prediction->away_team_id;
                 $result->away_team_name = $prediction->away_team_name;
-                $result->home_team_goals = $response['api']['fixtures']['goalsHomeTeam'];
-                $result->away_team_goals = $response['api']['fixtures']['goalsAwayTeam'];
+                $result->home_team_goals = $response['api']['fixtures'][0]['goalsHomeTeam'];
+                $result->away_team_goals = $response['api']['fixtures'][0]['goalsAwayTeam'];
                 $result->save();
 
                 $prediction->result_recorded = true;
