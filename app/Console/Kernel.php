@@ -35,6 +35,9 @@ class Kernel extends ConsoleKernel
             return date('M') == 6;
         });
 
+        // Get Results (runs at midnight daily)
+        $schedule->command('GetResults')->dailyAt('00:00');
+
         // Predictions Reset (runs at 6am daily)
         $schedule->command('ResetPredictions')->dailyAt('06:00');
     }
