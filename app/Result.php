@@ -7,6 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 class Result extends Model
 {
     /**
+     * Indicates if the primary ID is auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = false;
+
+    /**
+     * The "type" of the primary ID.
+     *
+     * @var string
+     */
+    protected $keyType = 'string';
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
