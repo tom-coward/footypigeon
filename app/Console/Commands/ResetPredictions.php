@@ -67,6 +67,7 @@ class ResetPredictions extends Command
             foreach(User::all() as $user){
                 foreach($fixtureResponse['api']['fixtures'] as $fixture){
                     $prediction = new Prediction;
+                    $prediction->id = $fixture['fixture_id'];
                     $prediction->user_id = $user->id;
                     $prediction->round_id = $fixture['round'];
                     $prediction->ko_time = $fixture['event_timestamp'];
