@@ -31,4 +31,12 @@ class Prediction extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    /**
+     * Get the prediction fixture's result.
+     */
+    public function result()
+    {
+        return $this->belongsTo('App\Result', 'fixture_id');
+    }
 }
