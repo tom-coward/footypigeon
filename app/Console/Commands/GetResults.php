@@ -46,7 +46,11 @@ class GetResults extends Command
 
         // Check if API status is 'FT' for all predictions without recorded results
         foreach($predictions as $prediction){
-            $request = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/id/'. $prediction->id .'?timezone=Europe/London', [
+            if(Result::where('id', $prediction->fixture_id)->exists()){
+                continue;
+            }
+
+            $request = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/id/'. $prediction->fixture_id .'?timezone=Europe/London', [
                 'headers' => [
                     'X-RapidAPI-Host' => config('api.host'),
                     'X-RapidAPI-Key' => config('api.key'),
@@ -56,7 +60,7 @@ class GetResults extends Command
 
             if($response['api']['fixtures'][0]['statusShort'] == 'FT'){
                 $result = new Result;
-                $result->id = $prediction->id;
+                $result->id = $response['api']['fixtures'][0]['fixture_id'];
                 $result->round_id = $prediction->round_id;
                 $result->home_team_id = $prediction->home_team_id;
                 $result->home_team_name = $prediction->home_team_name;
