@@ -47,6 +47,9 @@ class GetResults extends Command
         // Check if API status is 'FT' for all predictions without recorded results
         foreach($predictions as $prediction){
             if(Result::where('id', $prediction->fixture_id)->exists()){
+                $prediction->result_recorded = true;
+                $prediction->save();
+
                 continue;
             }
 
