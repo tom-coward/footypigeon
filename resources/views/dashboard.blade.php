@@ -48,6 +48,11 @@
                             </div>
                         </div>
                     </div>
+
+                    <hr />
+                    <div style="text-align:center">
+                        <a href="#howPointsAreAwardedModal" data-toggle="modal" data-target="#howPointsAreAwardedModal">How points are awarded</a>
+                    </div>
                 </div>
             </div>
 
@@ -78,6 +83,35 @@
                     @else
                         <p>You aren't currently a member of any leagues.</p>
                     @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 'How points are awarded' Modal -->
+<div class="modal fade" id="howPointsAreAwardedModal" tabindex="-1" role="dialog" aria-labelledby="howPointsAreAwardedModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="howPointsAreAwardedModalLabel">How points are awarded</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Correct score</h5>
+                        <p class="card-text">For each correctly predicted score, you'll be awarded 20 points.</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Correct winner</h5>
+                        <p class="card-text">If you predict the correct winner, you'll be awarded 10 points.</p>
+                    </div>
                 </div>
             </div>
         </div>
