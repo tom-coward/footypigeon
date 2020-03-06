@@ -32,7 +32,7 @@ class PredictionController extends Controller
     {
         // Validate form inputs
         $validator = Validator::make($request->all(), [
-            'prediction.*.*' => 'required|numeric',
+            'prediction.*.*' => 'required|numeric|min:0',
         ]);
 
         if ($validator->fails()) {

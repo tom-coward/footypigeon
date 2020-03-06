@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="input-group mb-3">
-                                    <input type="number" class="form-control" aria-label="{{ $prediction->away_team_name }}" name="prediction[{{ $prediction->id }}][away]" placeholder="Enter score..." value="{{ $prediction->away_team_goals }}" aria-describedby="{{ $prediction->id }}AwayTeam" {{ now()->timestamp >= $prediction->ko_time ? 'disabled' : '' }}>
+                                    <input type="number" min="0" class="form-control" aria-label="{{ $prediction->away_team_name }}" name="prediction[{{ $prediction->id }}][away]" placeholder="Enter score..." value="{{ $prediction->away_team_goals }}" aria-describedby="{{ $prediction->id }}AwayTeam" {{ now()->timestamp >= $prediction->ko_time ? 'disabled' : '' }}>
                                     <div class="input-group-append">
                                         <span class="input-group-text" id="{{ $prediction->id }}AwayTeam">{{ $prediction->away_team_name }}</span>
                                     </div>
