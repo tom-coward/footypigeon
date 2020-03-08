@@ -85,8 +85,6 @@ class GetResults extends Command
             $predictionDraw = $predictionHomeGoals == $predictionAwayGoals;
             $resultDraw = $resultHomeGoals == $resultAwayGoals;
 
-            dd($predictionHomeWin);
-
             // Correct score (20pts)
             if($predictionHomeGoals == $resultHomeGoals AND $predictionAwayGoals == $resultAwayGoals){
                 $prediction->user->increment('weekly_points', 20);
