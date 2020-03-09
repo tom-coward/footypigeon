@@ -48,11 +48,11 @@
 
                             <br />
                         @endforeach
+
+                        <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Predictions</button>
                     @else
                         <p>You do not currently have any predictions to set. This is likely due to you joining between prediction resets, which occur the day after the final game in a gameweek.</p>
                     @endif
-
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Predictions</button>
                 </form>
             </div>
         </div>
