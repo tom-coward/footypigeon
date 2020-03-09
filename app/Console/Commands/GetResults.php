@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use App\Prediction;
 use App\Result;
+use Illuminate\Support\Facades\Artisan;
 
 class GetResults extends Command
 {
@@ -111,5 +112,8 @@ class GetResults extends Command
             $prediction->result_recorded = true;
             $prediction->save();
         }
+
+        // Call team positions reset task
+        Artisan::call('teampositions:reset');
     }
 }

@@ -4,23 +4,24 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use App\User;
+use App\League;
+use App\Team;
 
-class ResetUserSeasonPoints extends Command
+class ResetTeamPositions extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'userseasonpoints:reset';
+    protected $signature = 'teampositions:reset';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Reset all user\'s season points counts to 0.';
+    protected $description = 'Re-calculate all team positions.';
 
     /**
      * Create a new command instance.
@@ -33,18 +34,17 @@ class ResetUserSeasonPoints extends Command
     }
 
     /**
-     * Update each user's 'season_points' DB value and all associated teams' 'points' value to 0.
+     * Execute the console command.
      *
      * @return mixed
      */
     public function handle()
     {
-        foreach(User::all() as $user){
-            $user->season_points = 0;
-            $user->save();
+        foreach (League::all() as $league){
+            $orderedTeams = $league->teams()->orderBy('points', 'desc')->get();
 
-            foreach($user->teams as $team){
-                $team->points = 0;
+            foreach ($orderedTeams as $key => $team) {
+                $team->position = $key + 1;
                 $team->save();
             }
         }
