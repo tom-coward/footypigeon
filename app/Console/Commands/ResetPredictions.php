@@ -41,7 +41,7 @@ class ResetPredictions extends Command
     public function handle()
     {
         // Check all current prediction games have been played
-        if(Prediction::all('result_recorded') == true){
+        if(!Prediction::where('result_recorded', false)->exists()){
             $client = new \GuzzleHttp\Client();
 
             // Get current round ID
