@@ -33,13 +33,20 @@ class ResetUserSeasonPoints extends Command
     }
 
     /**
-     * Update each user's 'season_points' DB value if isn't already 0.
+     * Update each user's 'season_points' DB value and all associated teams' 'points' value to 0.
      *
      * @return mixed
      */
     public function handle()
     {
-        User::where('season_points','>',0)
-            ->update(['season_points' => 0]);
+        foreach(User::all() as $user){
+            $user->season_points = 0;
+            $user->save();
+
+            foreach($user->teams as $team){
+                $team->points = 0;
+                $team->save();
+            }
+        }
     }
 }
