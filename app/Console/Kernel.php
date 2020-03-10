@@ -13,7 +13,12 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        'App\Console\Commands\ResetUserWeeklyPoints',
+        'App\Console\Commands\ResetUserMonthlyPoints',
+        'App\Console\Commands\ResetUserSeasonPoints',
+        'App\Console\Commands\GetResults',
+        'App\Console\Commands\ResetPredictions',
+        'App\Console\Commands\ResetTeamPositions',
     ];
 
     /**
