@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Console\Commands\ResetPredictions;
+use App\Console\Commands\ResetUserWeeklyPoints;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -30,21 +32,21 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Weekly Points Reset (runs every Friday at 12pm)
-        $schedule->command('ResetUserWeeklyPoints')->weeklyOn(5, '12:00');
+        $schedule->command(ResetUserWeeklyPoints::class)->weeklyOn(5, '12:00');
 
         // Monthly Points Reset (runs at midnight on 1st of every month)
-        $schedule->command('ResetUserMonthlyPoints')->monthlyOn(1, '00:00');
+        $schedule->command(ResetUserMonthlyPoints::class)->monthlyOn(1, '00:00');
 
         // Season Points Reset (runs at midnight on 1st of June annually)
-        $schedule->command('ResetUserSeasonPoints')->monthly()->when(function () {
+        $schedule->command(ResetUserSeasonPoints::class)->monthly()->when(function () {
             return date('M') == 6;
         });
 
         // Get Results (runs at midnight daily)
-        $schedule->command('GetResults')->dailyAt('00:00');
+        $schedule->command(GetResults::class)->dailyAt('00:00');
 
         // Predictions Reset (runs at 6am daily)
-        $schedule->command('ResetPredictions')->dailyAt('06:00');
+        $schedule->command(ResetPredictions::class)->dailyAt('06:00');
     }
 
     /**
