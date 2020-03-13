@@ -14,9 +14,7 @@
 /*
  * Welcome Page
  */
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('guest');
+Route::get('/', 'WelcomeController@index')->middleware('guest');
 
 /*
  * Authentication System & Account Settings
