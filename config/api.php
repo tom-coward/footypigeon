@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'host' => env('API_HOST', 'https://api-football-v1.p.rapidapi.com'),
+    'host' => env('API_HOST', 'api-football-v1.p.rapidapi.com'),
 
     /*
     |--------------------------------------------------------------------------
