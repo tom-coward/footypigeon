@@ -33,6 +33,6 @@ return [
     |
     */
 
-    'league_id' => env('API_LEAGUE_ID'),
+    'league_id' => env('API_LEAGUE_ID', 2790),
 
 ];
