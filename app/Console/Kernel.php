@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
             return date('M') == 6;
         });
         $schedule->command(GetResults::class)->dailyAt('00:00');
-        $schedule->command(ResetPredictions::class)->dailyAt('06:00');
+        $schedule->command(ResetPredictions::class)->everyTwoHours();
     }
 
     /**
