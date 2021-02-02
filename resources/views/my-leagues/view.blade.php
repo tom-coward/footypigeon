@@ -35,6 +35,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Manager</th>
+                        <th scope="col">Points</th>
                         @if(Auth::user()->id == $league->leagueAdmin->id)
                             <th scope="col">Manage</th>
                         @endif
@@ -51,12 +52,17 @@
                                 @endisset
                             </th>
                             <td>{{ $team->manager->name }}</td>
-                            @if((Auth::user()->id == $league->leagueAdmin->id) AND ($team->manager->id != $league->league_admin_id))
+                            <td>{{ $team->points }}</td>
+                            @if(Auth::user()->id == $league->leagueAdmin->id)
                                 <td>
-                                    <form action="{{ route('my-leagues.remove', [$league->id, $team->id]) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="btn btn-danger btn-sm btn-block">Remove</button>
-                                    </form>
+                                    @if($team->manager->id == Auth::user()->id)
+                                        N/A
+                                    @else
+                                        <form action="{{ route('my-leagues.remove', [$league->id, $team->id]) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="btn btn-danger btn-sm btn-block">Remove</button>
+                                        </form>
+                                    @endif
                                 </td>
                             @endif
                         </tr>
