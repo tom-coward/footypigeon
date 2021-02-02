@@ -36,7 +36,7 @@ class PredictionController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect(route('my-leagues.index'))
+            return redirect(route('my-predictions.index'))
                 ->with('error', 'The predictions you entered are invalid.');
         }
 
