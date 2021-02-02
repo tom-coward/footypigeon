@@ -57,6 +57,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the user's archived teams.
+     */
+    public function archivedTeams()
+    {
+        return $this->hasMany('App\ArchivedTeam', 'manager_id');
+    }
+
+    /**
      * Get the user's predictions.
      */
     public function predictions()

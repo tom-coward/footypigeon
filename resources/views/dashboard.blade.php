@@ -61,13 +61,14 @@
             <div class="card">
                 <div class="card-header">My League Positions</div>
                 <div class="card-body">
-                    @if(count(Auth::user()->teams) >= 1)
+                    @if(count(Auth::user()->teams) > 0)
                         <div class="row">
                             @foreach(Auth::user()->teams->take(3) as $team)
                                 <div class="col">
                                     <div class="card text-center">
                                         <div class="card-body">
                                             <h5 class="card-title">
+                                                <!-- TODO: add ordinal suffix to league position -->
                                                 @isset($team->position)
                                                     {{ $team->position }}
                                                 @else
@@ -85,6 +86,34 @@
                     @endif
                 </div>
             </div>
+
+            @if(count(Auth::user()->archivedTeams) > 0)
+                <br />
+
+                <div class="card">
+                    <div class="card-header">My History</div>
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach(Auth::user()->archivedTeams->take(3) as $archivedTeam)
+                                <div class="col">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                <!-- TODO: add ordinal suffix to league position -->
+                                                {{ $archivedTeam->points }} (League position: {{ $archivedTeam->league_position }})
+                                            </h5>
+                                            <p class="card-text">
+                                                {{ $archivedTeam->league_name }}<br />
+                                                <small>{{ $archivedTeam->season_year }} season</small>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 </div>

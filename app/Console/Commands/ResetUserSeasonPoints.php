@@ -5,6 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 
 use App\User;
+use App\ArchivedTeam;
+use Illuminate\Support\Facades\Artisan;
 
 class ResetUserSeasonPoints extends Command
 {
@@ -39,12 +41,26 @@ class ResetUserSeasonPoints extends Command
      */
     public function handle()
     {
+        // Call team positions reset task (to ensure no teams have `league_position` set to NULL)
+        Artisan::call('teampositions:reset');
+
         foreach(User::all() as $user){
             $user->season_points = 0;
             $user->save();
 
             foreach($user->teams as $team){
+                // Save team details in archive
+                $archivedTeam = new ArchivedTeam();
+                $archivedTeam->league_name = $team->league->name;
+                $archivedTeam->points = $team->points;
+                $archivedTeam->league_position = $team->position;
+                $archivedTeam->manager_id = $team->manager_id;
+                $archivedTeam->season_year = now()->year;
+                $archivedTeam->save();
+
+                // Revert team values to starting point for next season
                 $team->points = 0;
+                $team->position = NULL;
                 $team->save();
             }
         }
