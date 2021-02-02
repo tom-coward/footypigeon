@@ -40,31 +40,33 @@ class ResetPredictions extends Command
      */
     public function handle()
     {
-        // Check all current prediction games have been played
-        if(!Prediction::where('result_recorded', false)->exists()){
-            $client = new \GuzzleHttp\Client();
+        /* Get all predictions from current round */
+        $client = new \GuzzleHttp\Client();
 
-            // Get current round ID
-            $roundRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/rounds/'. config('api.league_id') .'/current', [
-                'headers' => [
-                    'X-RapidAPI-Host' => config('api.host'),
-                    'X-RapidAPI-Key' => config('api.key'),
-                ]
-            ]);
-            $roundResponse = json_decode($roundRequest->getBody(), true);
-            $currentRound = $roundResponse['api']['fixtures'][0];
+        // Get current round ID
+        $roundRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/rounds/'. config('api.league_id') .'/current', [
+            'headers' => [
+                'X-RapidAPI-Host' => config('api.host'),
+                'X-RapidAPI-Key' => config('api.key'),
+            ]
+        ]);
+        $roundResponse = json_decode($roundRequest->getBody(), true);
+        $currentRound = $roundResponse['api']['fixtures'][0];
 
-            // Get all fixtures
-            $fixtureRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/'. config('api.league_id') .'/'. $currentRound .'?timezone=Europe/London', [
-                'headers' => [
-                    'X-RapidAPI-Host' => config('api.host'),
-                    'X-RapidAPI-Key' => config('api.key'),
-                ]
-            ]);
-            $fixtureResponse = json_decode($fixtureRequest->getBody(), true);
+        // Get all fixtures
+        $fixtureRequest = $client->get('https://api-football-v1.p.rapidapi.com/v2/fixtures/league/'. config('api.league_id') .'/'. $currentRound .'?timezone=Europe/London', [
+            'headers' => [
+                'X-RapidAPI-Host' => config('api.host'),
+                'X-RapidAPI-Key' => config('api.key'),
+            ]
+        ]);
+        $fixtureResponse = json_decode($fixtureRequest->getBody(), true);
 
-            // Create prediction records (for each user & prediction)
-            foreach(User::all() as $user){
+        /* For each user, if all current predictions' games haven't been played, store new predictions */
+        foreach(User::all() as $user){
+            // Check all user's current prediction games have been played
+            if(!$user->predictions->where('result_recorded', false)->first()){
+                // Create prediction records
                 foreach($fixtureResponse['api']['fixtures'] as $fixture){
                     $prediction = new Prediction;
                     $prediction->user_id = $user->id;
