@@ -34,17 +34,6 @@ class Prediction extends Model
     protected $dateFormat = 'U';
 
     /**
-     * Get the prediction's kick-off time.
-     *
-     * @param  int  $value
-     * @return string
-     */
-    public function getKoTimeAttribute($value)
-    {
-        return Carbon::createFromTimestamp($value)->toDayDateTimeString();
-    }
-
-    /**
      * Get the prediction's user.
      */
     public function user()
