@@ -14,7 +14,7 @@
                     </div>
                 @endif
 
-                <!-- Status Message -->
+                <!-- Status message (if any) -->
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -25,7 +25,7 @@
                     @csrf
                     @method('PUT')
 
-                    @if(count($predictions) >= 1)
+                    @if(count($predictions) > 0)
                         @foreach($predictions as $prediction)
                             <div class="row">
                                 <div class="col-md-6">
