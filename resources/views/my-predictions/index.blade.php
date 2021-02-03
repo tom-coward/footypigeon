@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12">
-                                    <p style="text-align:center;">This prediction can be changed up until {{ $prediction->ko_time }}.</p>
+                                    <p style="text-align:center;">This prediction can be changed up until {{ \Carbon\Carbon::createFromTimestamp($prediction->ko_time)->toDayDateTimeString() }}.</p>
                                 </div>
                             </div>
 
