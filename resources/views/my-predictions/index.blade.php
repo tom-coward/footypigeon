@@ -14,7 +14,7 @@
                     </div>
                 @endif
 
-                <!-- Status Message -->
+                <!-- Status message (if any) -->
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
@@ -25,7 +25,7 @@
                     @csrf
                     @method('PUT')
 
-                    @if(count($predictions) >= 1)
+                    @if(count($predictions) > 0)
                         @foreach($predictions as $prediction)
                             <div class="row">
                                 <div class="col-md-6">
@@ -44,6 +44,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="col-md-12">
+                                    <p style="text-align:center;">This prediction can be changed up until {{ $prediction->ko_time }}.</p>
+                                </div>
                             </div>
 
                             <br />
@@ -51,7 +54,9 @@
 
                         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit Predictions</button>
                     @else
-                        <p>You do not currently have any predictions to set. This is likely due to you joining between prediction resets, which occur the day after the final game in a gameweek.</p>
+                        <div class="alert alert-danger" role="alert">
+                            You do not currently have any predictions to set. Upcoming games will be shown here once they have been generated for your account - please check back in a couple of hours.
+                        </div>
                     @endif
                 </form>
             </div>

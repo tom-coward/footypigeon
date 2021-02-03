@@ -16,6 +16,11 @@
                 </div>
                 <hr />
 
+                <!-- Info message -->
+                <div class="alert alert-info" role="alert">
+                    Points and league positions are recalculated daily at midnight.
+                </div>
+
                 <!-- Error message (if any) -->
                 @if (session('error'))
                     <div class="alert alert-danger" role="alert">
@@ -23,7 +28,7 @@
                     </div>
                 @endif
 
-                <!-- Status Message -->
+                <!-- Status message (if any) -->
                 @if (session('status'))
                     <div class="alert alert-success" role="alert">
                         {{ session('status') }}
