@@ -110,6 +110,8 @@ class GetResults extends Command
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 10);
                 }
+
+                $prediction->user->notify(new PointsAwarded($prediction, 10));
             }
 
             $prediction->result_recorded = true;
