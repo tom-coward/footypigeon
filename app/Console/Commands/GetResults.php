@@ -98,7 +98,7 @@ class GetResults extends Command
             }
             // Correct winner (10pts)
             elseif(($predictionHomeWin == true AND $resultHomeWin == true)
-                OR ($predictionAwayWin == true AND $resultHomeWin == true)
+                OR ($predictionAwayWin == true AND $resultAwayWin == true)
                 OR ($predictionDraw == true AND $resultDraw == true)){
                 $prediction->user->increment('weekly_points', 10);
                 $prediction->user->increment('monthly_points', 10);
