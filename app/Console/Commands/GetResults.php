@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Notifications\PointsAwarded;
 use Illuminate\Console\Command;
 
 use App\Prediction;
@@ -95,6 +96,8 @@ class GetResults extends Command
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 20);
                 }
+
+                $prediction->user->notify(new PointsAwarded($prediction, 20));
             }
             // Correct winner (10pts)
             elseif(($predictionHomeWin == true AND $resultHomeWin == true)
