@@ -47,7 +47,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($league->teams as $team)
+                    @foreach($league->teams->sortBy('position') as $team)
                         <tr>
                             <th scope="row">
                                 @isset($team->position)
