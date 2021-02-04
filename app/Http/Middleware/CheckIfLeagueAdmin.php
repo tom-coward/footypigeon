@@ -21,7 +21,7 @@ class CheckIfLeagueAdmin
         $userId = $request->user()->id;
 
         if($leagueAdminId != $userId){
-            return redirect('leagues.index')->with('status', 'You must be the league\'s administrator to do that.');
+            return redirect()->route('my-leagues.index')->with('error', 'You must be the league\'s administrator to do that.');
         };
 
         return $next($request);
