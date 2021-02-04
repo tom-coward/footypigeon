@@ -26,7 +26,7 @@ class League extends Model
      */
     public function teams()
     {
-        return $this->hasMany('App\Team')->orderBy('position');
+        return $this->hasMany('App\Team');
     }
 
     /**
