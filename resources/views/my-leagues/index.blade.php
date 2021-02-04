@@ -30,15 +30,16 @@
                 @endif
 
                 <!-- League List -->
-                <table class="table">
-                    <thead>
+                @if(count(Auth::user()->teams) > 0)
+                    <table class="table">
+                        <thead>
                         <tr>
                             <th scope="col">League name</th>
                             <th scope="col">Your position</th>
                             <th scope="col">Actions</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         @foreach(Auth::user()->teams as $team)
                             <tr>
                                 <td>{{ $team->league->name }}</td>
@@ -55,8 +56,11 @@
                                 </td>
                             </tr>
                         @endforeach
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                @else
+                    <p>You're not yet a member of any leagues.</p>
+                @endif
 
             </div>
         </div>
