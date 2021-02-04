@@ -19,7 +19,7 @@ class CheckIfLeagueMember
         $user = $request->user();
         $leagueId = $request->route('id');
 
-        if(!$user->teams()->where('id', $leagueId)->first()){
+        if(!$user->teams()->where('league_id', $leagueId)->first()){
             return redirect()->route('my-leagues.index')->with('error', 'You\'re not a member of that league.');
         }
 
