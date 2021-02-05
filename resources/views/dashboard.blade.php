@@ -23,7 +23,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ Auth::user()->weekly_points }} pts</h5>
-                                    <p class="card-text">in past week</p>
+                                    <p class="card-text">this week</p>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ Auth::user()->monthly_points }} pts</h5>
-                                    <p class="card-text">in past month</p>
+                                    <p class="card-text">this month</p>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             <div class="card text-center">
                                 <div class="card-body">
                                     <h5 class="card-title">{{ Auth::user()->season_points }} pts</h5>
-                                    <p class="card-text">all season</p>
+                                    <p class="card-text">this season</p>
                                 </div>
                             </div>
                         </div>
