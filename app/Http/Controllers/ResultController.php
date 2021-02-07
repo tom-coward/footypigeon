@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Prediction;
+use App\User;
 
 class ResultController extends Controller
 {
@@ -22,5 +23,23 @@ class ResultController extends Controller
         ])->orderBy('id', 'desc')->paginate(10);
 
         return view('my-results.index', ['predictions' => $predictions]);
+    }
+
+    /**
+     * Display the '[User]'s Results' page (a listing of all the selected user's predictions and associated results).
+     *
+     * @param  int  $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function usersPoints($id)
+    {
+        $user = User::findOrFail($id);
+
+        $predictions = Prediction::where([
+            ['user_id', $user->id],
+            ['result_recorded', true],
+        ])->orderBy('id', 'desc')->paginate(10);
+
+        return view('my-results.user', ['user' => $user, 'predictions' => $predictions]);
     }
 }
