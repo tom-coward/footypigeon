@@ -50,6 +50,7 @@ class LeagueController extends Controller
         $team = new Team;
         $team->manager_id = $request->user()->id;
         $team->league_id = $league->id;
+        $team->points = $request->user()->season_points;
         $team->save();
 
         return redirect(route('my-leagues.show', [$league->id]));
