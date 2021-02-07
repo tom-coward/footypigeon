@@ -19,7 +19,7 @@ class ResultController extends Controller
         $predictions = Prediction::where([
             ['user_id', Auth::user()->id],
             ['result_recorded', true],
-        ])->paginate(10);
+        ])->orderBy('id', 'desc')->paginate(10);
 
         return view('my-results.index', ['predictions' => $predictions]);
     }
