@@ -52,4 +52,11 @@ Route::middleware('auth')->group(function() {
         Route::get('/', 'PredictionController@index')->name('index');
         Route::put('/', 'PredictionController@update')->name('update');
     });
+
+    /*
+     * My Results
+     */
+    Route::prefix('results')->name('my-results.')->group(function () {
+        Route::get('/', 'ResultController@index')->name('index');
+    });
 });

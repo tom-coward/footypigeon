@@ -19,6 +19,9 @@
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('predictions', 'predictions/*') ? 'active' : '' }}" href="{{ route('my-predictions.index') }}">{{ __('My Predictions') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('results', 'results/*') ? 'active' : '' }}" href="{{ route('my-results.index') }}">{{ __('My Results') }}</a>
+                </li>
             </ul>
 
             <!-- Right Navbar -->
