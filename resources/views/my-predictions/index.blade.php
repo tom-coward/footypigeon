@@ -33,7 +33,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" id="{{ $prediction->id }}HomeTeam">{{ $prediction->home_team_name }}</span>
                                         </div>
-                                        <input type="number" class="form-control" aria-label="{{ $prediction->home_team_name }}" name="prediction[{{ $prediction->id }}][home]" placeholder="Enter score..." value="{{ $prediction->home_team_goals }}" aria-describedby="{{ $prediction->id }}HomeTeam" {{ now()->timestamp >= $prediction->ko_time ? 'disabled' : '' }}>
+                                        <input type="number" min="0" class="form-control" aria-label="{{ $prediction->home_team_name }}" name="prediction[{{ $prediction->id }}][home]" placeholder="Enter score..." value="{{ $prediction->home_team_goals }}" aria-describedby="{{ $prediction->id }}HomeTeam" {{ now()->timestamp >= $prediction->ko_time ? 'disabled' : '' }}>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
