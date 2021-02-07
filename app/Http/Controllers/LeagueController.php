@@ -195,6 +195,11 @@ class LeagueController extends Controller
     public function destroy($id)
     {
         $league = League::findOrFail($id);
+
+        foreach($league->teams() as $team){
+            $team->delete();
+        }
+
         $league->delete();
 
         return redirect(route('my-leagues.index'))->with('status', 'The league was successfully deleted.');
