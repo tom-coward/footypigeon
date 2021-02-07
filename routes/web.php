@@ -58,5 +58,6 @@ Route::middleware('auth')->group(function() {
      */
     Route::prefix('results')->name('my-results.')->group(function () {
         Route::get('/', 'ResultController@index')->name('index');
+        Route::get('/user/{id}', 'ResultController@usersPoints')->name('user');
     });
 });

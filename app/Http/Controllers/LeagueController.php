@@ -128,6 +128,7 @@ class LeagueController extends Controller
         $team = new Team;
         $team->manager_id = $user->id;
         $team->league_id = $id;
+        $team->points = $user->season_points;
         $team->save();
 
         return back()->with('status', 'User was successfully added to the league.');

@@ -57,7 +57,7 @@
                                 @endisset
                             </th>
                             <td>{{ $team->manager->name }}</td>
-                            <td>{{ $team->points }}</td>
+                            <td><a href="{{ url('/results/user', $team->manager->id) }}">{{ $team->points }}</a></td>
                             @if(Auth::user()->id == $league->leagueAdmin->id)
                                 <td>
                                     @if($team->manager->id == Auth::user()->id)
