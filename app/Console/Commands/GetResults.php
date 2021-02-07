@@ -92,6 +92,8 @@ class GetResults extends Command
                 $prediction->user->increment('monthly_points', 20);
                 $prediction->user->increment('season_points', 20);
 
+                $prediction->increment('points_awarded', 10);
+
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 20);
                 }
@@ -103,6 +105,8 @@ class GetResults extends Command
                 $prediction->user->increment('weekly_points', 10);
                 $prediction->user->increment('monthly_points', 10);
                 $prediction->user->increment('season_points', 10);
+
+                $prediction->increment('points_awarded', 10);
 
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 10);
