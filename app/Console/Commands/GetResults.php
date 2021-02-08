@@ -83,11 +83,11 @@ class GetResults extends Command
             $resultHomeWin = $resultHomeGoals > $resultAwayGoals;
             $predictionAwayWin = $predictionAwayGoals > $predictionHomeGoals;
             $resultAwayWin = $resultAwayGoals > $resultHomeGoals;
-            $predictionDraw = $predictionHomeGoals == $predictionAwayGoals;
-            $resultDraw = $resultHomeGoals == $resultAwayGoals;
+            $predictionDraw = ($predictionHomeGoals != NULL && $predictionAwayGoals != NULL) && ($predictionHomeGoals === $predictionAwayGoals);
+            $resultDraw = $resultHomeGoals === $resultAwayGoals;
 
             // Correct score (20pts)
-            if($predictionHomeGoals == $resultHomeGoals AND $predictionAwayGoals == $resultAwayGoals){
+            if($predictionHomeGoals === $resultHomeGoals AND $predictionAwayGoals === $resultAwayGoals){
                 $prediction->user->increment('weekly_points', 20);
                 $prediction->user->increment('monthly_points', 20);
                 $prediction->user->increment('season_points', 20);
