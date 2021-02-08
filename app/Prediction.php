@@ -22,8 +22,6 @@ class Prediction extends Model
      */
     protected $attributes = [
         'result_recorded' => false,
-        'home_team_goals' => 0,
-        'away_team_goals' => 0,
     ];
 
     /**
