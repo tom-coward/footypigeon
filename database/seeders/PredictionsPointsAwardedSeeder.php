@@ -16,7 +16,7 @@ class PredictionsPointsAwardedSeeder extends Seeder
      */
     public function run()
     {
-        foreach(Prediction::->whereNotNull('points_awarded')->get() as $prediction){
+        foreach(Prediction::whereNotNull('points_awarded')->get() as $prediction){
             $predictionHomeGoals = $prediction->home_team_goals;
             $predictionAwayGoals = $prediction->away_team_goals;
             $resultHomeGoals = $prediction->result->home_team_goals;
