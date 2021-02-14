@@ -17,10 +17,8 @@ class ResultController extends Controller
      */
     public function index()
     {
-        $predictions = Prediction::where([
-            ['user_id', Auth::user()->id],
-            ['result_recorded', true],
-        ])->orderBy('id', 'desc')->paginate(10);
+        $predictions = Prediction::where('user_id', Auth::user()->id)->whereNotNull('points_awarded')->orderBy('id', 'desc')->paginate(10);
+
 
         return view('my-results.index', ['predictions' => $predictions]);
     }
@@ -35,10 +33,7 @@ class ResultController extends Controller
     {
         $user = User::findOrFail($id);
 
-        $predictions = Prediction::where([
-            ['user_id', $user->id],
-            ['result_recorded', true],
-        ])->orderBy('id', 'desc')->paginate(10);
+        $predictions = Prediction::where('user_id', $user->id)->whereNotNull('points_awarded')->orderBy('id', 'desc')->paginate(10);
 
         return view('my-results.user', ['user' => $user, 'predictions' => $predictions]);
     }

@@ -65,7 +65,7 @@ class ResetPredictions extends Command
         /* For each user, if all current predictions' games haven't been played, store new predictions */
         foreach(User::all() as $user){
             // Check all user's current prediction games have been played
-            if(!$user->predictions->where('result_recorded', false)->first()){
+            if(!$user->predictions->whereNull('points_awarded')->first()){
                 // Create prediction records
                 foreach($fixtureResponse['api']['fixtures'] as $fixture){
                     $prediction = new Prediction;

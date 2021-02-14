@@ -43,7 +43,7 @@ class GetResults extends Command
     {
         $client = new \GuzzleHttp\Client();
 
-        $predictions = Prediction::where('result_recorded', false)->get();
+        $predictions = Prediction::whereNull('points_awarded')->get();
 
         // Check if API status is 'FT' for all predictions without recorded results
         foreach($predictions as $prediction){
@@ -111,9 +111,10 @@ class GetResults extends Command
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 10);
                 }
+            }else{
+                $prediction->points_awarded = 0;
             }
 
-            $prediction->result_recorded = true;
             $prediction->save();
         }
 

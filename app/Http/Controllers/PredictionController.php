@@ -17,7 +17,7 @@ class PredictionController extends Controller
      */
     public function index()
     {
-        $predictions = Auth::user()->predictions->where('result_recorded', false);
+        $predictions = Auth::user()->predictions->whereNull('points_awarded');
 
         return view('my-predictions.index', ['predictions' => $predictions]);
     }
