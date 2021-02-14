@@ -111,6 +111,7 @@ class GetResults extends Command
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 10);
                 }
+            // No points
             }else{
                 $prediction->points_awarded = 0;
             }
