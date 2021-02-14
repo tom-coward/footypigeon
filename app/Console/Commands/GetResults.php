@@ -92,7 +92,7 @@ class GetResults extends Command
                 $prediction->user->increment('monthly_points', 20);
                 $prediction->user->increment('season_points', 20);
 
-                $prediction->points_awarded = 10;
+                $prediction->points_awarded = 20;
 
                 foreach($prediction->user->teams as $team){
                     $team->increment('points', 20);
