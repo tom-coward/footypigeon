@@ -39,6 +39,10 @@ class PredictionsPointsAwardedSeeder extends Seeder
                 OR ($predictionDraw == true AND $resultDraw == true)){
                 DB::table('predictions')->where('id', $prediction->id)->update(['points_awarded' => 10]);
             }
+            // No points
+            else{
+                DB::table('predictions')->where('id', $prediction->id)->update(['points_awarded' => 0]);
+            }
         }
     }
 }
