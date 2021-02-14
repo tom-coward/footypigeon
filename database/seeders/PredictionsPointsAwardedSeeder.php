@@ -16,7 +16,7 @@ class PredictionsPointsAwardedSeeder extends Seeder
      */
     public function run()
     {
-        foreach(Prediction::where('result_recorded', true)->get() as $prediction){
+        foreach(Prediction::->whereNotNull('points_awarded')->get() as $prediction){
             $predictionHomeGoals = $prediction->home_team_goals;
             $predictionAwayGoals = $prediction->away_team_goals;
             $resultHomeGoals = $prediction->result->home_team_goals;
@@ -38,6 +38,10 @@ class PredictionsPointsAwardedSeeder extends Seeder
                 OR ($predictionAwayWin == true AND $resultAwayWin == true)
                 OR ($predictionDraw == true AND $resultDraw == true)){
                 DB::table('predictions')->where('id', $prediction->id)->update(['points_awarded' => 10]);
+            }
+            // No points
+            else{
+                DB::table('predictions')->where('id', $prediction->id)->update(['points_awarded' => 0]);
             }
         }
     }

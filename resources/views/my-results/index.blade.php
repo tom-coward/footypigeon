@@ -26,9 +26,9 @@
                                 <h5>Final Result</h5>
                                 <h2>{{ $prediction->result->home_team_goals }} - {{ $prediction->result->away_team_goals }}</h2>
 
-                                @isset($prediction->points_awarded)
+                                @if($prediction->points_awarded > 0)
                                     <p class="text-center">You were awarded <b>{{ $prediction->points_awarded }} points</b> for this match.</p>
-                                @endisset
+                                @endif
                             </div>
                         </div>
 

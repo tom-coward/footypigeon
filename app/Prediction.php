@@ -16,15 +16,6 @@ class Prediction extends Model
     public $timestamps = false;
 
     /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'result_recorded' => false,
-    ];
-
-    /**
      * The storage format of the model's date columns.
      *
      * @var string
