@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 
 use App\Prediction;
 use App\User;
-use Carbon;
+use Carbon\Carbon;
 
 class ResetPredictions extends Command
 {
