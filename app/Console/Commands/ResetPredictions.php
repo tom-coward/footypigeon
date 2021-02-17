@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 
 use App\Prediction;
 use App\User;
+use Carbon;
 
 class ResetPredictions extends Command
 {
@@ -68,16 +69,18 @@ class ResetPredictions extends Command
             if(!$user->predictions->whereNull('points_awarded')->first()){
                 // Create prediction records
                 foreach($fixtureResponse['api']['fixtures'] as $fixture){
-                    $prediction = new Prediction;
-                    $prediction->user_id = $user->id;
-                    $prediction->fixture_id = $fixture['fixture_id'];
-                    $prediction->round_id = $fixture['round'];
-                    $prediction->ko_time = $fixture['event_timestamp'];
-                    $prediction->home_team_id = $fixture['homeTeam']['team_id'];
-                    $prediction->home_team_name = $fixture['homeTeam']['team_name'];
-                    $prediction->away_team_id = $fixture['awayTeam']['team_id'];
-                    $prediction->away_team_name = $fixture['awayTeam']['team_name'];
-                    $prediction->save();
+                    if($fixture['event_timestamp'] > Carbon::now()->timestamp) {
+                        $prediction = new Prediction;
+                        $prediction->user_id = $user->id;
+                        $prediction->fixture_id = $fixture['fixture_id'];
+                        $prediction->round_id = $fixture['round'];
+                        $prediction->ko_time = $fixture['event_timestamp'];
+                        $prediction->home_team_id = $fixture['homeTeam']['team_id'];
+                        $prediction->home_team_name = $fixture['homeTeam']['team_name'];
+                        $prediction->away_team_id = $fixture['awayTeam']['team_id'];
+                        $prediction->away_team_name = $fixture['awayTeam']['team_name'];
+                        $prediction->save();
+                    }
                 }
             }
         }
