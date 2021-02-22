@@ -165,6 +165,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Buzz\LaravelHCaptcha\CaptchaServiceProvider::class,
 
         /*
          * Application Service Providers...
