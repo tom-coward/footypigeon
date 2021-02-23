@@ -34,4 +34,4 @@ This application follows the standard Laravel project installation process. Run 
 
 Your web server should be [configured](https://laravel.com/docs/master/deployment#server-configuration) so that the web root is the `/public` directory.
 
-In a production environment, it's also recommended to [run some additional optimization commands](https://laravel.com/docs/8.x/deployment#optimization). **Do not do this in a local development environment** as it may prevent your changes from taking effect.
+In a production environment, it's also recommended to [run some additional optimisation commands](https://laravel.com/docs/master/deployment#optimization). **Do not do this in a local development environment** as it may prevent your changes from taking effect.
